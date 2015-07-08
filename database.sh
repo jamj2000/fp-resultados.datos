@@ -1,15 +1,26 @@
 #!/bin/bash
 
-HOST="localhost"
-PUERTO="3306"
-USUARIO="root"
-CLAVE="root"
+
+if     [ $OPENSHIFT_APP_DNS ] ;then
+    HOST=$OPENSHIFT_MYSQL_DB_HOST
+  PUERTO=$OPENSHIFT_MYSQL_DB_PORT
+ USUARIO=$OPENSHIFT_MYSQL_DB_USERNAME
+   CLAVE=$OPENSHIFT_MYSQL_DB_PASSWORD
+else
+    HOST="localhost"
+  PUERTO="3306"
+ USUARIO="root"
+   CLAVE="root"
+fi
+
 BASEDATOS="fp"
 TABLAS="tablas.sql"
 ALUMNOS="alumnos.csv"
 PROFESORES="profesores.csv"
 MODULOS="modulos.csv"
 MODULOS_ALUMNOS="modulos_alumnos.csv"
+
+
 
 echo "Creando base de datos $BASEDATOS desde cero"
 echo "drop   database if exists     $BASEDATOS;" | mysql -u $USUARIO -p$CLAVE -h$HOST -P$PUERTO
