@@ -1,19 +1,21 @@
 #!/bin/bash
 
 
-if     [ $OPENSHIFT_APP_DNS ] ;then
-    HOST=$OPENSHIFT_MYSQL_DB_HOST
-  PUERTO=$OPENSHIFT_MYSQL_DB_PORT
- USUARIO=$OPENSHIFT_MYSQL_DB_USERNAME
-   CLAVE=$OPENSHIFT_MYSQL_DB_PASSWORD
+if      [ $HEROKU ] ;then
+     HOST=$DB_HOST
+   PUERTO=$DB_PORT
+  USUARIO=$DB_USER
+    CLAVE=$DB_PASS
+BASEDATOS=$DB_NAME
+
 else
-    HOST="localhost"
-  PUERTO="3306"
- USUARIO="root"
-   CLAVE="root"
+     HOST="localhost"
+   PUERTO="3306"
+  USUARIO="root"
+    CLAVE="root"
+BASEDATOS="fp"
 fi
 
-BASEDATOS="fp"
 TABLAS="tablas.sql"
 ALUMNOS="alumnos.csv"
 PROFESORES="profesores.csv"
@@ -48,7 +50,7 @@ mysqlimport  --ignore-lines=1 \
              --fields-terminated-by=, \
              --columns='profesor_id,siglas,nombre,curso,ciclo,horas_totales,horas_semanales,num_resultados,r1_peso,r2_peso,r3_peso,r4_peso,r5_peso,r6_peso,r7_peso,r8_peso,r9_peso' \
              --local -u$USUARIO -p$CLAVE -h$HOST -P$PUERTO $BASEDATOS $MODULOS  2&> /dev/null
-             
+ 
 echo "Importando datos desde archivo $MODULOS_ALUMNOS"
 mysqlimport  --ignore-lines=1 \
              --fields-terminated-by=, \
