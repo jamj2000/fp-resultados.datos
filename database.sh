@@ -1,20 +1,19 @@
 #!/bin/bash
 
 
-if      [ $HEROKU ] ;then
-     HOST=$DB_HOST
-   PUERTO=$DB_PORT
-  USUARIO=$DB_USER
-    CLAVE=$DB_PASS
-BASEDATOS=$DB_NAME
+####################################################
+# Modificar las siguientes constantes
+# antes de ejecutar este script
+# según el sitio donde se encuentre la BD.
 
-else
      HOST="localhost"
    PUERTO="3306"
   USUARIO="root"
     CLAVE="root"
 BASEDATOS="fp"
-fi
+
+#####################################################
+
 
 TABLAS="tablas.sql"
 ALUMNOS="alumnos.csv"
