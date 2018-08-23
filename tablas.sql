@@ -7,11 +7,11 @@ CREATE TABLE `alumnos` (
   `apellido2` varchar(100),
   `nombre` varchar(100),
   `curso` varchar(100),
-  `fecha_nac` date DEFAULT '0000-00-00',
+  `fecha_nac` date,
   `email` varchar(100), 
   `id_escolar` integer,  
   `created_at` timestamp NOT NULL DEFAULT NOW(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB AUTO_INCREMENT=1;
 
@@ -36,7 +36,7 @@ CREATE TABLE `modulos` (
   `r8_peso` integer,
   `r9_peso` integer,
   `created_at` timestamp NOT NULL DEFAULT NOW(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB AUTO_INCREMENT=1;
 
@@ -53,7 +53,7 @@ CREATE TABLE `profesores` (
   `remember_token` varchar(100) DEFAULT NULL,
   `admin` char(1),
   `created_at` timestamp NOT NULL DEFAULT NOW(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT NOW(),
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB AUTO_INCREMENT=1;
 
